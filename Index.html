@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="PNK Inmobiliaria - Plataforma de bienes raíces con propiedades premium exclusivas en la Región Metropolitana" />
+<title>PNK Inmobiliaria | Lumina Slate - Propiedades Premium en Santiago</title>
+<meta name="keywords" content="inmobiliaria, propiedades, terrenos, departamentos, casas, Santiago, Chile" />
+<meta name="author" content="PNK Inmobiliaria" />
+<!-- Bootstrap 5 CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet"/>
+<style>
+        :root {
+            --surface-variant: #192540;
+            --secondary-container: #006a61;
+            --tertiary-container: #fa88c8;
+            --secondary: #89f5e7;
+            --on-tertiary-fixed: #360024;
+            --inverse-surface: #faf8ff;
+            --primary-fixed-dim: #8387ff;
+            --on-background: #dee5ff;
+            --tertiary-fixed: #fd8bca;
+            --on-surface: #dee5ff;
+            --on-secondary-container: #dcfff8;
+            --secondary-fixed: #89f5e7;
+            --on-primary-fixed: #000000;
+            --surface-dim: #060e20;
+            --surface-container-lowest: #000000;
+            --outline-variant: #40485d;
+            --on-primary-container: #0a0081;
+            --on-secondary: #005c54;
+            --on-tertiary-fixed-variant: #6d104e;
+            --background: #060e20;
+            --inverse-primary: #494bd7;
+            --surface-container-low: #091328;
+            --secondary-dim: #7ae7d8;
+            --error-container: #a70138;
+            --tertiary: #ff9dd1;
+            --secondary-fixed-dim: #7ae7d8;
+            --error-dim: #d73357;
+            --on-surface-variant: #a3aac4;
+            --primary-fixed: #9396ff;
+            --outline: #6d758c;
+            --surface-tint: #a3a6ff;
+            --on-primary: #0f00a4;
+            --tertiary-dim: #eb7bba;
+            --tertiary-fixed-dim: #ee7ebc;
+            --primary: #a3a6ff;
+            --on-primary-fixed-variant: #0e009d;
+            --primary-dim: #6063ee;
+            --on-error: #490013;
+            --surface-container-high: #141f38;
+            --surface-container-highest: #192540;
+            --on-error-container: #ffb2b9;
+            --on-tertiary-container: #5e0042;
+            --on-tertiary: #6c0f4d;
+            --error: #ff6e84;
+            --inverse-on-surface: #4d556b;
+            --surface-container: #0f1930;
+            --on-secondary-fixed: #004841;
+            --on-secondary-fixed-variant: #00675e;
+            --surface: #060e20;
+            --primary-container: #9396ff;
+            --surface-bright: #1f2b49;
+        }
+
+        /* Fallback for Manrope and Inter using system font stacks */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--background);
+            color: var(--on-surface);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .brand-text, .h1, .h2, .h3 {
+            font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-weight: 700;
+        }
+
+        .glass-panel {
+            background: rgba(25, 37, 64, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(163, 170, 196, 0.1);
+            border-radius: 1.5rem;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(6, 14, 32, 0.9) 0%, rgba(6, 14, 32, 0.4) 100%);
+        }
+
+        .bg-orb {
+            position: fixed;
+            z-index: -1;
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: var(--secondary-container);
+            opacity: 0.1;
+            top: -250px;
+            left: -250px;
+        }
+
+        .orb-2 {
+            width: 600px;
+            height: 600px;
+            background: var(--tertiary-container);
+            opacity: 0.1;
+            bottom: -300px;
+            right: -300px;
+        }
+
+        .nav-custom {
+            background: rgba(6, 14, 32, 0.6) !important;
+            backdrop-filter: blur(20px);
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(to right, var(--primary), var(--primary-dim));
+            border: none;
+            color: var(--on-primary);
+            font-weight: 600;
+            border-radius: 50px;
+            padding: 0.5rem 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .btn-primary-custom:hover {
+            transform: scale(1.05);
+            color: var(--on-primary);
+        }
+
+        .btn-outline-custom {
+            border: 1px solid var(--outline-variant);
+            color: white;
+            border-radius: 50px;
+            padding: 0.5rem 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .btn-outline-custom:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+        }
+
+        .property-card {
+            background: var(--surface-container);
+            border-radius: 2rem;
+            border: none;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+
+        .property-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .search-bar-container {
+            background: var(--surface-container-low);
+            border: 1px solid rgba(109, 117, 140, 0.1);
+            border-radius: 2rem;
+            padding: 0.5rem;
+            margin-top: -3rem;
+            position: relative;
+            z-index: 20;
+        }
+
+        .form-select-custom {
+            background-color: transparent;
+            border: none;
+            color: var(--on-surface);
+            padding: 1rem 1.5rem;
+        }
+
+        .form-select-custom:focus {
+            box-shadow: none;
+            background-color: transparent;
+            color: var(--on-surface);
+        }
+
+        .login-input {
+            background-color: var(--surface-container-high) !important;
+            border: none !important;
+            color: white !important;
+            padding: 0.75rem 1rem !important;
+            border-radius: 0.75rem !important;
+        }
+
+        .login-input:focus {
+            box-shadow: 0 0 0 2px rgba(163, 166, 255, 0.4) !important;
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Generic icon replacement for Material Symbols since APIs are removed */
+        .icon-placeholder {
+            display: inline-block;
+            width: 1.5rem;
+            height: 1.5rem;
+            vertical-align: middle;
+            background-color: currentColor;
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            mask-position: center;
+            -webkit-mask-size: contain;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+        }
+
+        /* Skip link for accessibility */
+        .skip-to-content {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary);
+            color: var(--on-primary);
+            padding: 8px 12px;
+            z-index: 100;
+            text-decoration: none;
+            border-radius: 0 0 0.5rem 0;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .skip-to-content:focus {
+            top: 0;
+        }
+
+        /* Focus visible styles for better accessibility */
+        :focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* Image placeholders */
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #2d4a5e 0%, #1e3a52 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #a3aac4;
+            font-size: 0.875rem;
+            font-weight: 600;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .image-placeholder::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: 
+                repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(163, 170, 196, 0.05) 10px, rgba(163, 170, 196, 0.05) 20px);
+            animation: shimmer 3s infinite;
+        }
+
+        .image-placeholder-text {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translate(-50%, -50%); }
+            100% { transform: translate(50%, 50%); }
+        }
+</head>
+<body>
+<!-- Skip to main content link for accessibility -->
+<a href="#main-content" class="skip-to-content">Ir al contenido principal</a>
+
+<!-- Decorative orbs -->
+<div class="bg-orb orb-1" aria-hidden="true"></div>
+<div class="bg-orb orb-2" aria-hidden="true"></div>
+<header>
+<nav class="navbar navbar-expand-lg navbar-dark nav-custom fixed-top" role="navigation" aria-label="Navegación principal">
+<div class="container-xl py-2">
+<a class="navbar-brand fw-bold tracking-tight" href="#main-content">PNK INMOBILIARIA</a>
+<button class="navbar-toggler" data-bs-target="#navbarMain" data-bs-toggle="collapse" type="button" aria-controls="navbarMain" aria-expanded="false" aria-label="Alternar menú de navegación">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarMain">
+<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4 gap-lg-3">
+<li class="nav-item">
+<a class="nav-link active text-primary-fixed border-bottom border-2 border-primary-fixed pb-0" href="#" aria-current="page">Home</a>
+</li>
+<li class="nav-item">
+<a class="nav-link text-white-50" href="#registrar-propietario">Registrar Propietario</a>
+</li>
+<li class="nav-item">
+<a class="nav-link text-white-50" href="#registrar-gestor">Registrar Gestor Freelance</a>
+</li>
+<li class="nav-item">
+<a class="nav-link text-white-50" href="#contacto">Contacto</a>
+</li>
+</ul>
+<div class="d-flex gap-3 align-items-center">
+<button class="btn btn-outline-custom" aria-label="Iniciar sesión">Sign In</button>
+<button class="btn btn-primary-custom" aria-label="Listar propiedad">List Property</button>
+</div>
+</div>
+</div>
+</nav>
+</header>
+<main id="main-content" role="main" aria-label="Contenido principal">
+<!-- Hero Section -->
+<section class="position-relative overflow-hidden min-vh-100 d-flex align-items-center" aria-labelledby="hero-title">
+<div class="position-absolute top-0 start-0 w-100 h-100 z-n1" aria-hidden="true">
+<div class="w-100 h-100 image-placeholder">
+<div class="image-placeholder-text">
+<div style="font-size: 2rem; margin-bottom: 0.5rem;">🏢</div>
+<div>Inmuebles Premium</div>
+</div>
+</div>
+<div class="position-absolute top-0 start-0 w-100 h-100 hero-gradient"></div>
+</div>
+<div class="container-xl position-relative z-1 pt-5">
+<div class="row align-items-center gy-5">
+<div class="col-lg-7">
+<span class="badge rounded-pill px-3 py-2 mb-4" style="background: rgba(163, 166, 255, 0.2); color: var(--primary);">Campaña San Ramón</span>
+<h1 id="hero-title" class="display-3 fw-bolder text-white mb-4">
+                        Encuentra tu próximo <br /><span class="text-gradient">Santuario Digital.</span>
+</h1>
+<p class="lead text-white-50 mb-0" style="max-width: 500px;">
+                        Explora desarrollos exclusivos y propiedades premium con la tecnología y confianza de Lumina Slate.
+                    </p>
+</div>
+<div class="col-lg-5 d-flex justify-content-lg-end">
+<div class="glass-panel p-4 p-lg-5 w-100" style="max-width: 450px;">
+<h2 class="text-white mb-2">Bienvenido</h2>
+<p class="text-white-50 small mb-4">Accede a tu panel inmobiliario personalizado.</p>
+<form aria-labelledby="login-form-title" action="#" method="post" novalidate>
+<div class="mb-4">
+<label for="login-email" class="form-label small fw-bold text-primary text-uppercase mb-2">Usuario</label>
+<input id="login-email" class="form-control login-input" placeholder="nombre@ejemplo.com" type="email" autocomplete="email" required aria-required="true" aria-describedby="email-help" />
+<div id="email-help" class="visually-hidden">Introduce tu correo para iniciar sesión</div>
+</div>
+<div class="mb-4">
+<label for="login-password" class="form-label small fw-bold text-primary text-uppercase mb-2">Contraseña</label>
+<input id="login-password" class="form-control login-input" placeholder="••••••••" type="password" autocomplete="current-password" required aria-required="true" aria-describedby="password-reqs" />
+<div id="password-reqs" class="visually-hidden">Mínimo 8 caracteres requeridos</div>
+</div>
+<button class="btn btn-primary-custom w-100 py-3 mb-3 shadow-lg" type="submit" aria-label="Iniciar sesión">Ingresar</button>
+</form>
+<nav aria-label="Enlaces de autenticación">
+<div class="d-flex justify-content-between small">
+<a class="text-white-50 text-decoration-none" href="#recuperar-password">¿Olvidaste tu contraseña?</a>
+<a class="text-primary fw-bold text-decoration-none" href="#crear-cuenta">Crear cuenta</a>
+</div>
+</nav>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Search Bar Section -->
+<section class="py-5" aria-labelledby="search-title">
+<div class="container-xl">
+<div class="search-bar-container">
+<form aria-label="Formulario de búsqueda de propiedades" action="#buscar" method="get" novalidate>
+<div class="row g-2 align-items-center">
+<div class="col-lg-3">
+<label for="search-comuna" class="visually-hidden">Seleccionar Comuna</label>
+<select id="search-comuna" class="form-select form-select-custom" aria-label="Seleccionar Comuna">
+<option selected="">Seleccionar Comuna</option>
+<option>Santiago</option>
+<option>Las Condes</option>
+</select>
+</div>
+<div class="col-lg-3">
+<label for="search-provincia" class="visually-hidden">Seleccionar Provincia</label>
+<select id="search-provincia" class="form-select form-select-custom" aria-label="Seleccionar Provincia">
+<option value="">Seleccionar Provincia</option>
+<option value="santiago">Santiago</option>
+<option value="maipo">Maipo</option>
+</select>
+</div>
+<div class="col-lg-3">
+<label for="search-sector" class="visually-hidden">Seleccionar Sector</label>
+<select id="search-sector" class="form-select form-select-custom" aria-label="Seleccionar Sector">
+<option value="">Seleccionar Sector</option>
+<option value="urbano">Urbano</option>
+<option value="rural">Rural</option>
+</select>
+</div>
+<div class="col-lg-3">
+<button class="btn btn-primary-custom w-100 py-3 rounded-4" type="submit" aria-label="Buscar propiedades con los filtros seleccionados">
+                        Buscar Propiedad
+                    </button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</section>
+<!-- Property Grid -->
+<section class="py-5 mt-5" aria-labelledby="properties-title">
+<div class="container-xl py-5">
+<div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end mb-5 gap-3">
+<div>
+<h2 id="properties-title" class="text-white mb-2">Propiedades Destacadas</h2>
+<p class="text-white-50">Selección exclusiva de terrenos, casas y departamentos.</p>
+</div>
+<a class="text-primary fw-bold text-decoration-none" href="#catalog" role="button">Ver todo el catálogo →</a>
+</div>
+<div class="row g-4">
+<!-- Property Card 1 -->
+<div class="col-lg-4">
+<article class="card property-card h-100">
+<div class="position-relative" style="height: 250px;">
+<div class="w-100 h-100 image-placeholder" style="background: linear-gradient(135deg, #2d5a4a 0%, #1e3f2e 100%);">
+<div class="image-placeholder-text">
+<div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🌍</div>
+<div>Terreno Premium</div>
+<div style="font-size: 0.75rem; margin-top: 0.25rem;">5.000m²</div>
+</div>
+</div>
+<span class="position-absolute top-0 start-0 m-3 badge bg-dark bg-opacity-50 px-3 py-2" aria-label="Tipo de propiedad: Terreno">TERRENO</span>
+<span class="position-absolute bottom-0 start-0 m-3 badge bg-primary px-3 py-2" aria-label="Estado: Disponible">Disponible</span>
+</div>
+<div class="card-body p-4">
+<h3 class="card-title text-white mb-3">Parcela Los Aromos, San Ramón</h3>
+<dl class="d-flex gap-3 text-white-50 small mb-4">
+<dt class="visually-hidden">Superficie:</dt>
+<dd>5.000m²</dd>
+<dt class="visually-hidden">Ubicación:</dt>
+<dd>Región Metropolitana</dd>
+</dl>
+<div class="mb-4" role="region" aria-label="Precio de la propiedad">
+<div class="h4 text-primary fw-bold mb-0" aria-label="Precio: 5650 UF">UF 5.650</div>
+<div class="text-white-50 small" aria-label="Aproximadamente 200 millones 969 mil 31 pesos">$200.969.031 aprox.</div>
+</div>
+<a href="#propiedad-1" class="btn w-100 py-2 fw-semibold" style="background: var(--surface-container-high); color: white; border-radius: 0.75rem;" aria-label="Ver más detalles de Parcela Los Aromos">Ver Más</a>
+</div>
+</article>
+</div>
+<!-- Property Card 2 -->
+<div class="col-lg-4">
+<article class="card property-card h-100">
+<div class="position-relative" style="height: 250px;">
+<div class="w-100 h-100 image-placeholder" style="background: linear-gradient(135deg, #4a3a5e 0%, #2e1f52 100%);">
+<div class="image-placeholder-text">
+<div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🏙️</div>
+<div>Penthouse Lumina</div>
+<div style="font-size: 0.75rem; margin-top: 0.25rem;">Las Condes</div>
+</div>
+</div>
+<span class="position-absolute top-0 start-0 m-3 badge bg-dark bg-opacity-50 px-3 py-2" aria-label="Tipo de propiedad: Departamento">DEPARTAMENTO</span>
+<span class="position-absolute bottom-0 start-0 m-3 badge bg-info text-dark px-3 py-2" aria-label="Estado: Nuevo">Nuevo</span>
+</div>
+<div class="card-body p-4">
+<h3 class="card-title text-white mb-3">Penthouse Lumina, Las Condes</h3>
+<dl class="d-flex gap-3 text-white-50 small mb-4">
+<dt class="visually-hidden">Dormitorios:</dt>
+<dd>3 Dorm.</dd>
+<dt class="visually-hidden">Baños:</dt>
+<dd>2 Baños</dd>
+</dl>
+<div class="mb-4" role="region" aria-label="Precio de la propiedad">
+<div class="h4 text-primary fw-bold mb-0" aria-label="Precio: 8900 UF">UF 8.900</div>
+<div class="text-white-50 small" aria-label="Aproximadamente 316 millones 542 mil 120 pesos">$316.542.120 aprox.</div>
+</div>
+<a href="#propiedad-2" class="btn w-100 py-2 fw-semibold" style="background: var(--surface-container-high); color: white; border-radius: 0.75rem;" aria-label="Ver más detalles de Penthouse Lumina">Ver Más</a>
+</div>
+</article>
+</div>
+<!-- Property Card 3 -->
+<div class="col-lg-4">
+<article class="card property-card h-100">
+<div class="position-relative" style="height: 250px;">
+<div class="w-100 h-100 image-placeholder" style="background: linear-gradient(135deg, #5a4a2d 0%, #3f2e1e 100%);">
+<div class="image-placeholder-text">
+<div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🏡</div>
+<div>Residencia El Valle</div>
+<div style="font-size: 0.75rem; margin-top: 0.25rem;">Chicureo</div>
+</div>
+</div>
+<span class="position-absolute top-0 start-0 m-3 badge bg-dark bg-opacity-50 px-3 py-2" aria-label="Tipo de propiedad: Casa">CASA</span>
+<span class="position-absolute bottom-0 start-0 m-3 badge bg-danger px-3 py-2" aria-label="Estado: Entrega Inmediata">Entrega Inmediata</span>
+</div>
+<div class="card-body p-4">
+<h3 class="card-title text-white mb-3">Residencia El Valle, Chicureo</h3>
+<dl class="d-flex gap-3 text-white-50 small mb-4">
+<dt class="visually-hidden">Dormitorios:</dt>
+<dd>4 Dorm.</dd>
+<dt class="visually-hidden">Amenidades:</dt>
+<dd>Piscina</dd>
+</dl>
+<div class="mb-4" role="region" aria-label="Precio de la propiedad">
+<div class="h4 text-primary fw-bold mb-0" aria-label="Precio: 12450 UF">UF 12.450</div>
+<div class="text-white-50 small" aria-label="Aproximadamente 442 millones 843 mil 500 pesos">$442.843.500 aprox.</div>
+</div>
+<a href="#propiedad-3" class="btn w-100 py-2 fw-semibold" style="background: var(--surface-container-high); color: white; border-radius: 0.75rem;" aria-label="Ver más detalles de Residencia El Valle">Ver Más</a>
+</div>
+</article>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Section -->
+<section class="pb-5 mb-5" aria-labelledby="stats-title">
+<div class="container-xl">
+<div class="glass-panel p-5">
+<h2 id="stats-title" class="visually-hidden">Estadísticas de PNK Inmobiliaria</h2>
+<div class="row g-4 text-center">
+<div class="col-6 col-lg-3">
+<div class="h1 fw-bold text-white mb-1" aria-label="Más de mil doscientas propiedades listadas">+1.2k</div>
+<div class="text-white-50 small">Propiedades Listadas</div>
+</div>
+<div class="col-6 col-lg-3">
+<div class="h1 fw-bold text-white mb-1" aria-label="Noventa y ocho por ciento de satisfacción">98%</div>
+<div class="text-white-50 small">Clientes Satisfechos</div>
+</div>
+<div class="col-6 col-lg-3">
+<div class="h1 fw-bold text-white mb-1" aria-label="Quince años de experiencia">15</div>
+<div class="text-white-50 small">Años de Trayectoria</div>
+</div>
+<div class="col-6 col-lg-3">
+<div class="h1 fw-bold text-white mb-1" aria-label="Más de quinientos gestores freelance">+500</div>
+<div class="text-white-50 small">Gestores Freelance</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-dark text-white-50 py-5" role="contentinfo" aria-label="Pie de página">
+<div class="container-xl py-4">
+<div class="row gy-5">
+<div class="col-lg-4 col-sm-6">
+<div class="h5 fw-bold text-white mb-4">PNK INMOBILIARIA</div>
+<p class="small mb-4 pe-lg-5">
+                    Transformando el mercado inmobiliario con transparencia, tecnología y un enfoque centrado en las personas.
+                </p>
+<nav aria-label="Redes sociales" class="d-flex gap-3">
+<a class="btn btn-outline-secondary rounded-circle p-2" href="#facebook" style="width: 40px; height: 40px; line-height: 20px;" aria-label="Síguenos en Facebook">f</a>
+<a class="btn btn-outline-secondary rounded-circle p-2" href="#instagram" style="width: 40px; height: 40px; line-height: 20px;" aria-label="Síguenos en Instagram">@</a>
+</nav>
+</div>
+<div class="col-lg-2 col-sm-6">
+<h3 class="text-white mb-4">Explorar</h3>
+<nav aria-label="Navegación de exploración">
+<ul class="list-unstyled small">
+<li class="mb-2"><a class="text-decoration-none text-white-50" href="#propiedades">Propiedades</a></li>
+<li class="mb-2"><a class="text-decoration-none text-white-50" href="#proyectos">Nuevos Proyectos</a></li>
+<li class="mb-2"><a class="text-decoration-none text-white-50" href="#blog">Blog Inmobiliario</a></li>
+<li class="mb-2"><a class="text-decoration-none text-white-50" href="#mapa">Mapa de Sectores</a></li>
+</ul>
+</nav>
+</div>
+<div class="col-lg-2 col-sm-6">
+<h3 class="text-white mb-4">Soporte</h3>
+<nav aria-label="Navegación de soporte">
+<ul class="list-unstyled small">
+<li class="mb-2"><a class="text-decoration-none text-white-50" href="#help">Help Center</a></li>
+<li class="mb-2"><a class="text-decoration-none text-white-50" href="#terms">Términos de Servicio</a></li>
+<li class="mb-2"><a class="text-decoration-none text-white-50" href="#privacy">Privacy Policy</a></li>
+<li class="mb-2"><a class="text-decoration-none text-white-50" href="#sitemap">Sitemap</a></li>
+</ul>
+</nav>
+</div>
+<div class="col-lg-4 col-sm-6">
+<h3 class="text-white mb-4">Administración</h3>
+<div class="p-4 rounded-4" style="background: var(--surface-container-high);">
+<p class="small mb-3">Acceso restringido para gestores y administradores.</p>
+<a class="text-primary fw-bold text-decoration-none" href="#admin" aria-label="Ir al panel de administración">Panel Admin →</a>
+</div>
+</div>
+</div>
+<hr class="my-5 border-secondary" />
+<div class="d-flex flex-column flex-lg-row justify-content-between align-items-center gap-3 small">
+<div><small>© 2024 Lumina Slate Real Estate. All rights reserved.</small></div>
+<address class="d-flex gap-4" style="font-style: normal;">
+<span>Santiago, Chile</span>
+<a href="mailto:contacto@pnk.cl" class="text-white-50 text-decoration-none">contacto@pnk.cl</a>
+</address>
+</div>
+</div>
+</footer>
+<script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

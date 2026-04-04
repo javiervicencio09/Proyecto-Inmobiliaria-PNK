@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Propietario | InmoRed Elqui</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Navegación principal de la plataforma">
+            <div class="container-fluid">
+                <a class="navbar-brand fw-bold" href="#">INMORED ELQUI</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDashboard" aria-controls="navbarDashboard" aria-expanded="false" aria-label="Alternar navegación">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarDashboard">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Mi Perfil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-danger" href="#">Cerrar Sesión</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            
+            <aside class="col-md-3 col-lg-2 d-md-block bg-white sidebar collapse shadow-sm vh-100" id="sidebarMenu">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active fw-bold text-primary" aria-current="page" href="#">
+                                Mis Inmuebles
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-secondary" href="#">
+                                Registrar Propiedad
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-secondary" href="#">
+                                Solicitudes de Visita
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
+                
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Gestión de Inmuebles</h1>
+                    <button class="btn btn-primary" aria-label="Añadir una nueva propiedad al catálogo">
+                        + Nueva Propiedad
+                    </button>
+                </div>
+
+                <section aria-labelledby="titulo-propiedades">
+                    <h2 id="titulo-propiedades" class="visually-hidden">Lista de mis propiedades publicadas</h2>
+                    
+                    <div class="row row-cols-1 row-cols-md-3 g-4">
+                        <div class="col">
+                            <article class="card h-100 shadow-sm">
+                                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Fotografía frontal de casa en Sector El Milagro con antejardín">
+                                <div class="card-body">
+                                    <h3 class="card-title h5">Casa en El Milagro</h3>
+                                    <p class="card-text text-muted mb-1"><small>Cód: C0125457</small></p>
+                                    <p class="card-text fw-bold text-success fs-5">$154.000.000</p>
+                                    <ul class="list-unstyled mb-3">
+                                        <li><strong>Dormitorios:</strong> 3</li>
+                                        <li><strong>Baños:</strong> 2</li>
+                                        <li><strong>Piscina:</strong> Sí</li>
+                                    </ul>
+                                </div>
+                                <div class="card-footer bg-transparent border-top-0">
+                                    <button class="btn btn-outline-secondary w-100" aria-label="Editar detalles de Casa en El Milagro">Editar Antecedentes</button>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
