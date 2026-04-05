@@ -83,32 +83,80 @@
 </head>
 
 <body>
-    <div class="login-container">
-        <div class="login-card">
-            <div class="login-header">
-                <h1 class="mb-0 fs-2">Inmobiliaria PNK</h1>
-                <p class="mb-0 mt-2 opacity-75">Inicia sesión en tu cuenta</p>
-            </div>
-            <div class="login-body">
-                <form>
-                    <div class="mb-4">
-                        <label for="usuario" class="form-label">Usuario o Correo Electrónico</label>
-                        <input type="text" class="form-control" id="usuario" placeholder="Ingresa tu usuario o email"
-                            required>
+    <main id="main-content" tabindex="-1">
+        <section class="login-container" aria-labelledby="titulo-login">
+            <div class="login-card">
+                <header class="login-header">
+                    <h1 id="titulo-login" class="mb-0 fs-2">Inmobiliaria PNK</h1>
+                    <p class="mb-0 mt-2 opacity-75">Inicia sesión en tu cuenta</p>
+                </header>
+                <section class="login-body" aria-labelledby="form-login-titulo">
+                    <form aria-labelledby="form-login-titulo" autocomplete="on">
+                        <h2 id="form-login-titulo" class="visually-hidden">Formulario de inicio de sesión</h2>
+                        <fieldset>
+                            <legend class="visually-hidden">Datos de acceso</legend>
+                            <div class="mb-4">
+                                <label for="usuario" class="form-label">Usuario</label>
+                                <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Ingresa tu usuario" required aria-required="true" autocomplete="username">
+                            </div>
+                            <div class="mb-4">
+                                <label for="password" class="form-label">Contraseña</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Ingresa tu contraseña" required aria-required="true" autocomplete="current-password">
+                            </div>
+                        </fieldset>
+                        <button type="submit" class="btn btn-primary" aria-label="Iniciar sesión">
+                            <i class="bi bi-box-arrow-in-right me-2"></i>Continuar
+                        </button>
+                    </form>
+                    <div class="mt-4 p-3 rounded-3" style="background: rgba(255,255,255,0.9); border: 1px solid rgba(0,0,0,0.08);">
+                        <p class="mb-1 fw-semibold">Credenciales de administrador</p>
+                        <p class="mb-0 small text-muted">Usuario: <strong>Admin</strong> · Contraseña: <strong>Adminpass</strong></p>
                     </div>
-                    <div class="mb-4">
-                        <label for="password" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="password" placeholder="Ingresa tu contraseña"
-                            required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="bi bi-box-arrow-in-right me-2"></i>Continuar
-                    </button>
-                </form>
+                </section>
             </div>
-        </div>
-    </div>
+        </section>
+    </main>
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script>
+    const formulario = document.querySelector('form');
+    formulario.addEventListener('submit', (e) => {
+        e.preventDefault(); 
+        
+        const usuarioInput = document.getElementById('usuario').value.trim();
+        const passwordInput = document.getElementById('password').value.trim();
+        const usuarios = JSON.parse(localStorage.getItem('usuariosPNK')) || [];
+        const usuario = usuarios.find(u => u.email === usuarioInput || u.usuario === usuarioInput);
+
+        const guardarSesion = (correo) => {
+            localStorage.setItem('usuarioActivoPNK', correo);
+        };
+
+        if (usuarioInput === 'Admin' && passwordInput === 'Adminpass') {
+            guardarSesion('Admin');
+            window.location.href = 'dash-admin.html';
+            return;
+        }
+
+        if (usuario && usuario.estado === 'Activo') {
+            guardarSesion(usuarioInput);
+            if (usuario.rol === 'Propietario') {
+                window.location.href = 'dash-prop.html';
+            } else if (usuario.rol === 'Gestor') {
+                window.location.href = 'dash-gestor.html';
+            } else {
+                alert('Rol no reconocido.');
+            }
+        } else if (usuarioInput === "propietario@pnk.cl" || usuarioInput === "profe@inacap.cl") {
+            guardarSesion(usuarioInput);
+            window.location.href = 'dash-prop.html';
+        } else if (usuarioInput === "gestor@pnk.cl" || usuarioInput === "javier@gestor.cl") {
+            guardarSesion(usuarioInput);
+            window.location.href = 'dash-gestor.html';
+        } else {
+            alert("Usuario no encontrado o no habilitado. Para la demo usa: Admin, profe@inacap.cl o javier@gestor.cl");
+        }
+    });
+</script>
 </body>
 
 </html>

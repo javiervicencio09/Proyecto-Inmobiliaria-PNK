@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Propietario | PNK</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        :root { --brand: #4f46e5; --accent: #7c3aed; }
+        body { background-color: #f8fafc; font-family: 'Segoe UI', sans-serif; }
+        .sidebar { min-height: 100vh; background: #1e1b4b; color: white; padding: 2rem 1rem; }
+        .nav-link { color: rgba(255,255,255,0.7); margin-bottom: 1rem; border-radius: 10px; }
+        .nav-link.active { background: var(--brand); color: white; }
+        .card-stats { border: none; border-radius: 15px; }
+        .btn-add { background: linear-gradient(135deg, var(--brand), var(--accent)); border: none; color: white; border-radius: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-3 col-lg-2 sidebar d-md-block" aria-label="Menú de navegación propietario">
+                <h1 class="fw-bold mb-4 px-3 fs-4" id="propietario-titulo">PNK Panel</h1>
+                <ul class="nav flex-column">
+                    <li class="nav-item"><a class="nav-link active" href="#"><i class="bi bi-house-door me-2"></i> Mis Inmuebles</a></li>
+                    <li class="nav-item mt-5"><a class="nav-link text-danger" href="index.html"><i class="bi bi-box-arrow-left me-2"></i> Salir</a></li>
+                </ul>
+            </nav>
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4" id="main-content" tabindex="-1">
+                <section aria-labelledby="mis-propiedades-titulo">
+                    <div class="d-flex justify-content-between align-items-center pb-2 mb-4 border-bottom">
+                        <h2 id="mis-propiedades-titulo" class="h2 fw-bold text-dark">Mis Propiedades</h2>
+                        <button class="btn btn-add px-4 py-2" data-bs-toggle="modal" data-bs-target="#modalPropiedad" aria-label="Publicar nuevo inmueble">
+                            <i class="bi bi-plus-lg me-2"></i> Publicar Inmueble
+                        </button>
+                    </div>
+                    <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
+                        <table class="table table-hover align-middle mb-0" aria-describedby="mis-propiedades-titulo">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th class="ps-4">Inmueble</th>
+                                    <th>Tipo</th>
+                                    <th>Precio (UF)</th>
+                                    <th>Estado</th>
+                                    <th class="text-end pe-4">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-propiedades-body">
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+<div class="modal fade" id="modalPropiedad" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content rounded-4">
+      <div class="modal-header bg-light p-4">
+        <h5 class="fw-bold mb-0">Registrar Nuevo Inmueble</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-4">
+        <form id="formRegistroPropiedad">
+          <div class="row g-3">
+            <div class="col-md-8">
+                <label class="form-label fw-bold small">Título del Aviso</label>
+                <input type="text" id="propTitulo" class="form-control" required>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label fw-bold small">Precio (UF)</label>
+                <input type="number" id="propPrecio" class="form-control" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-bold small">Tipo de Inmueble</label>
+                <select id="propTipo" class="form-select">
+                    <option>Casa</option><option>Departamento</option><option>Terreno</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-bold small">N° Rol (Bienes Raíces)</label>
+                <input type="text" id="propRol" class="form-control" required>
+            </div>
+          </div>
+          <div class="mt-4 text-end">
+            <button type="submit" class="btn btn-add px-4">Guardar Propiedad</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', cargarMisPropiedades);
+
+    function inicializarPropiedades() {
+        if (!localStorage.getItem('propiedadesPNK')) {
+            const propPrueba = [
+                { id: 1, titulo: "Casa Modelo Mediterráneo - La Serena", tipo: "Casa", precio: 6500, rol: "123-4", estado: "Público", autor: "Profesor Evaluador", tipoAutor: "Propietario" },
+                { id: 2, titulo: "Terreno Agrícola 5000m2 - Valle del Elqui", tipo: "Terreno", precio: 2100, rol: "555-9", estado: "Revisión", autor: "Javier Vicencio", tipoAutor: "Gestor" }
+            ];
+            localStorage.setItem('propiedadesPNK', JSON.stringify(propPrueba));
+        }
+    }
+
+    function cargarMisPropiedades() {
+        inicializarPropiedades();
+        const tbody = document.getElementById('tabla-propiedades-body');
+        tbody.innerHTML = '';
+        
+        let propiedades = JSON.parse(localStorage.getItem('propiedadesPNK')) || [];
+        let misPropiedades = propiedades.filter(p => p.tipoAutor === "Propietario");
+
+        if (misPropiedades.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="5" class="text-center">No has publicado propiedades.</td></tr>';
+            return;
+        }
+
+        misPropiedades.forEach((prop, index) => {
+            let colorEstado = prop.estado === 'Revisión' ? 'bg-warning text-dark' : 'bg-success';
+            tbody.innerHTML += `
+                <tr>
+                    <td class="ps-4 fw-semibold">${prop.titulo}</td>
+                    <td>${prop.tipo}</td>
+                    <td>UF ${prop.precio}</td>
+                    <td><span class="badge ${colorEstado}">${prop.estado}</span></td>
+                    <td class="text-end pe-4">
+                        <button onclick="eliminarPropiedad(${prop.id})" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i> Eliminar</button>
+                    </td>
+                </tr>
+            `;
+        });
+    }
+
+    document.getElementById('formRegistroPropiedad').addEventListener('submit', function(e) {
+        e.preventDefault();
+        let propiedades = JSON.parse(localStorage.getItem('propiedadesPNK')) || [];
+        
+        const nuevaProp = {
+            id: Date.now(),
+            titulo: document.getElementById('propTitulo').value,
+            precio: document.getElementById('propPrecio').value,
+            tipo: document.getElementById('propTipo').value,
+            rol: document.getElementById('propRol').value,
+            estado: "Revisión",
+            autor: "Profesor Evaluador", 
+            tipoAutor: "Propietario"
+        };
+
+        propiedades.push(nuevaProp);
+        localStorage.setItem('propiedadesPNK', JSON.stringify(propiedades));
+        
+        alert('Propiedad registrada. Esperando revisión del Administrador.');
+        let modal = bootstrap.Modal.getInstance(document.getElementById('modalPropiedad'));
+        modal.hide();
+        document.getElementById('formRegistroPropiedad').reset();
+        cargarMisPropiedades();
+    });
+
+    function eliminarPropiedad(id) {
+        if(confirm('¿Eliminar esta propiedad?')) {
+            let propiedades = JSON.parse(localStorage.getItem('propiedadesPNK'));
+            propiedades = propiedades.filter(p => p.id !== id);
+            localStorage.setItem('propiedadesPNK', JSON.stringify(propiedades));
+            cargarMisPropiedades();
+        }
+    }
+</script>
+</body>
+</html>

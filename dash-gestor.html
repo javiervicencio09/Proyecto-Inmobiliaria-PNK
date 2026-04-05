@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Gestor | PNK</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        :root { --brand: #4f46e5; --accent: #7c3aed; }
+        body { background-color: #f0f4ff; font-family: 'Segoe UI', sans-serif; }
+        .sidebar { min-height: 100vh; background: #312e81; color: white; padding: 2rem 1rem; }
+        .nav-link { color: rgba(255,255,255,0.7); margin-bottom: 1rem; border-radius: 10px; }
+        .nav-link.active { background: var(--accent); color: white; }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-3 col-lg-2 sidebar d-md-block" aria-label="Menú de navegación gestor">
+                <h1 class="fw-bold mb-4 px-3 fs-4" id="gestor-titulo">Gestor PNK</h1>
+                <div class="px-3 mb-4"><span id="penka-id-badge" class="badge bg-success">PENKA_ID: ---</span></div>
+                <ul class="nav flex-column">
+                    <li class="nav-item"><a class="nav-link active" href="#"><i class="bi bi-globe me-2"></i> Comunidad Inmuebles</a></li>
+                    <li class="nav-item mt-5"><a class="nav-link text-danger" href="index.html"><i class="bi bi-box-arrow-left me-2"></i> Salir</a></li>
+                </ul>
+            </nav>
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4" id="main-content" tabindex="-1">
+                <section aria-labelledby="panel-gestor-titulo">
+                    <div class="pb-2 mb-4 border-bottom">
+                        <h2 id="panel-gestor-titulo" class="h2 fw-bold text-dark">Panel de Gestor Freelance</h2>
+                        <p class="text-muted">Gestiona propiedades y gana comisiones con cada venta.</p>
+                    </div>
+                    <div class="row g-4 mb-4">
+                        <div class="col-md-4">
+                            <div class="card shadow-sm border-0 rounded-4 p-4 border-start border-4 border-success">
+                                <h3 class="text-muted fw-bold mb-1 h6">Propiedades Públicas</h3>
+                                <p class="h2 mb-0 fw-bolder" id="contador-propiedades-publicas">--</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card shadow-sm border-0 rounded-4 p-4 border-start border-4 border-primary">
+                                <h3 class="text-muted fw-bold mb-1 h6">Mis Ofertas</h3>
+                                <p class="h2 mb-0 fw-bolder" id="contador-mis-ofertas">--</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card shadow-sm border-0 rounded-4 p-4 border-start border-4 border-warning">
+                                <h3 class="text-muted fw-bold mb-1 h6">Comisiones Ganadas</h3>
+                                <p class="h2 mb-0 fw-bolder" id="contador-comisiones">--</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section aria-labelledby="comunidad-titulo">
+                    <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
+                        <div class="card-header bg-light border-0">
+                            <h2 id="comunidad-titulo" class="mb-0 fw-bold fs-5">Propiedades Disponibles en la Comunidad</h2>
+                            <small class="text-muted">Propiedades públicas para ofertar y gestionar.</small>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0" aria-describedby="comunidad-titulo">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th class="ps-4">Inmueble</th>
+                                        <th>Tipo</th>
+                                        <th>Precio</th>
+                                        <th>Subido por</th>
+                                        <th class="text-end pe-4">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabla-comunidad-body">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        mostrarPenkaId();
+        cargarComunidad();
+        actualizarMetricas();
+    });
+
+    function obtenerUsuarioActivo() {
+        const emailActivo = localStorage.getItem('usuarioActivoPNK');
+        if (!emailActivo) return null;
+        const usuarios = JSON.parse(localStorage.getItem('usuariosPNK')) || [];
+        return usuarios.find(u => u.email === emailActivo) || null;
+    }
+
+    function guardarUsuario(usuario) {
+        const usuarios = JSON.parse(localStorage.getItem('usuariosPNK')) || [];
+        const indice = usuarios.findIndex(u => u.email === usuario.email);
+        if (indice >= 0) {
+            usuarios[indice] = usuario;
+            localStorage.setItem('usuariosPNK', JSON.stringify(usuarios));
+        }
+    }
+
+    function generarPenkaId() {
+        const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+        let result = 'PNK-';
+        for (let i = 0; i < 4; i++) {
+            result += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        result += '-' + Math.floor(100 + Math.random() * 900);
+        return result;
+    }
+
+    function mostrarPenkaId() {
+        const badge = document.getElementById('penka-id-badge');
+        const usuario = obtenerUsuarioActivo();
+
+        if (!usuario || usuario.rol !== 'Gestor' || usuario.estado !== 'Activo') {
+            badge.textContent = 'PENKA_ID: ---';
+            return;
+        }
+
+        if (!usuario.penkaId) {
+            usuario.penkaId = generarPenkaId();
+            guardarUsuario(usuario);
+        }
+
+        badge.textContent = `PENKA_ID: ${usuario.penkaId}`;
+    }
+
+    function cargarComunidad() {
+        const tbody = document.getElementById('tabla-comunidad-body');
+        tbody.innerHTML = '';
+        
+        let propiedades = JSON.parse(localStorage.getItem('propiedadesPNK')) || [];
+        let propiedadesPublicas = propiedades.filter(p => p.estado === "Público");
+
+        if (propiedadesPublicas.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="5" class="text-center py-4 text-muted">No hay propiedades públicas disponibles.</td></tr>';
+            return;
+        }
+
+        propiedadesPublicas.forEach((prop) => {
+            tbody.innerHTML += `
+                <tr>
+                    <td class="ps-4 fw-semibold text-primary">${prop.titulo}</td>
+                    <td><span class="badge bg-light text-dark">${prop.tipo}</span></td>
+                    <td class="fw-bold text-success">UF ${prop.precio}</td>
+                    <td>${prop.autor} <span class="badge bg-secondary">${prop.tipoAutor}</span></td>
+                    <td class="text-end pe-4">
+                        <button class="btn btn-sm btn-success shadow-sm" onclick="ofertarPropiedad(${prop.id})">
+                            <i class="bi bi-hand-thumbs-up me-1"></i>Ofertar
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+    }
+
+    function ofertarPropiedad(id) {
+        alert('Oferta enviada por la propiedad ID: ' + id + '. Nos contactaremos contigo pronto.');
+        // Aquí podrías guardar la oferta en localStorage si quieres tracking
+    }
+
+    function actualizarMetricas() {
+        let propiedades = JSON.parse(localStorage.getItem('propiedadesPNK')) || [];
+        let propiedadesPublicas = propiedades.filter(p => p.estado === "Público").length;
+
+        document.getElementById('contador-propiedades-publicas').textContent = propiedadesPublicas;
+        document.getElementById('contador-mis-ofertas').textContent = '0';
+        document.getElementById('contador-comisiones').textContent = '0';
+    }
+</script>
+</body>
+</html>
