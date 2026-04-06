@@ -99,27 +99,28 @@
     </style>
 </head>
 
-<body class="bg-light">
 
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom py-3" aria-label="Navegación principal">
+<body class="bg-light" itemscope itemtype="https://schema.org/WebPage">
+
+    <header role="banner">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom py-3" aria-label="Navegación principal" role="navigation">
             <div class="container">
-                <a class="navbar-brand fw-bold fs-4 text-dark" href="index.html">INMOBILIARIA PNK</a>
+                <a class="navbar-brand fw-bold fs-4 text-dark" href="index.html" aria-label="Inicio Inmobiliaria PNK" title="Inicio">INMOBILIARIA PNK</a>
                 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegación">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav align-items-center">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark fw-semibold border border-dark px-3 mx-1" href="registro-propietario.html">Registrar Propietario</a>
+                    <ul class="navbar-nav align-items-center" role="menubar">
+                        <li class="nav-item" role="none">
+                            <a class="nav-link text-dark fw-semibold border border-dark px-3 mx-1" href="registro-propietario.html" role="menuitem">Registrar Propietario</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link fw-bold px-3 mx-1" href="registro-gestor.html" style="color: var(--brand); border: 1px solid var(--brand);">Registrar Gestor Freelance</a>
+                        <li class="nav-item" role="none">
+                            <a class="nav-link fw-bold px-3 mx-1" href="registro-gestor.html" style="color: var(--brand); border: 1px solid var(--brand);" role="menuitem">Registrar Gestor Freelance</a>
                         </li>
-                        <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
-                            <a class="btn btn-primary shadow-sm text-white" href="login.html">Iniciar Sesión</a>
+                        <li class="nav-item ms-lg-3 mt-2 mt-lg-0" role="none">
+                            <a class="btn btn-primary shadow-sm text-white" href="login.html" role="menuitem">Iniciar Sesión</a>
                         </li>
                     </ul>
                 </div>
@@ -127,16 +128,16 @@
         </nav>
     </header>
 
-    <main id="main-content" tabindex="-1">
+    <main id="main-content" tabindex="-1" role="main">
 
-        <section class="page-header shadow-sm" aria-labelledby="titulo-gestor">
+        <section class="page-header shadow-sm" aria-labelledby="titulo-gestor" role="region">
             <div class="container">
                 <h1 id="titulo-gestor" class="display-5 fw-bold mb-2">Postula como Gestor Freelance</h1>
                 <p class="lead mb-0 opacity-75">Capta propiedades, ofértalas en nuestra comunidad y genera excelentes comisiones.</p>
             </div>
         </section>
 
-        <section class="container mb-5" aria-labelledby="form-titulo">
+        <section class="container mb-5" aria-labelledby="form-titulo" role="region">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="form-card" style="margin-top: -4rem; position: relative; z-index: 10;">
@@ -207,8 +208,8 @@
                     <span class="fw-bold ms-2">INMOBILIARIA PNK</span>
                 </div>
                 <div class="col-md-6 mb-3 mb-md-0 text-center">
-                    <a href="registro-propietario.html" class="text-white text-decoration-none mx-2">Registro Propietario</a> - 
-                    <a href="registro-gestor.html" class="text-white text-decoration-none mx-2">Registro Gestor</a>
+                    <a href="registro-propietario.html" class="text-white text-decoration-none mx-2" aria-label="Registro Propietario">Registro Propietario</a> - 
+                    <a href="registro-gestor.html" class="text-white text-decoration-none mx-2" aria-label="Registro Gestor">Registro Gestor</a>
                     <p class="mt-2 mb-0 small text-light">&copy; 2026 Todos los derechos Reservados Inmobiliaria PNK</p>
                 </div>
                 <div class="col-md-3 text-center text-md-end fs-4"></div>

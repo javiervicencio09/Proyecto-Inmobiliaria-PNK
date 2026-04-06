@@ -16,22 +16,22 @@
         .btn-add { background: linear-gradient(135deg, var(--brand), var(--accent)); border: none; color: white; border-radius: 10px; }
     </style>
 </head>
-<body>
+<body itemscope itemtype="https://schema.org/WebPage">
     <div class="container-fluid">
         <div class="row">
-            <nav class="col-md-3 col-lg-2 sidebar d-md-block" aria-label="Menú de navegación propietario">
+            <nav class="col-md-3 col-lg-2 sidebar d-md-block" aria-label="Menú de navegación propietario" role="navigation">
                 <h1 class="fw-bold mb-4 px-3 fs-4" id="propietario-titulo">PNK Panel</h1>
                 <ul class="nav flex-column">
                     <li class="nav-item"><a class="nav-link active" href="#"><i class="bi bi-house-door me-2"></i> Mis Inmuebles</a></li>
                     <li class="nav-item mt-5"><a class="nav-link text-danger" href="index.html"><i class="bi bi-box-arrow-left me-2"></i> Salir</a></li>
                 </ul>
             </nav>
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4" id="main-content" tabindex="-1">
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4" id="main-content" tabindex="-1" role="main">
                 <section aria-labelledby="mis-propiedades-titulo">
                     <div class="d-flex justify-content-between align-items-center pb-2 mb-4 border-bottom">
                         <h2 id="mis-propiedades-titulo" class="h2 fw-bold text-dark">Mis Propiedades</h2>
                         <button class="btn btn-add px-4 py-2" data-bs-toggle="modal" data-bs-target="#modalPropiedad" aria-label="Publicar nuevo inmueble">
-                            <i class="bi bi-plus-lg me-2"></i> Publicar Inmueble
+                            <i class="bi bi-plus-lg me-2" aria-hidden="true"></i> Publicar Inmueble
                         </button>
                     </div>
                     <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
@@ -64,23 +64,95 @@
       <div class="modal-body p-4">
         <form id="formRegistroPropiedad">
           <div class="row g-3">
-            <div class="col-md-8">
-                <label class="form-label fw-bold small">Título del Aviso</label>
-                <input type="text" id="propTitulo" class="form-control" required>
-            </div>
-            <div class="col-md-4">
-                <label class="form-label fw-bold small">Precio (UF)</label>
-                <input type="number" id="propPrecio" class="form-control" required>
-            </div>
             <div class="col-md-6">
-                <label class="form-label fw-bold small">Tipo de Inmueble</label>
-                <select id="propTipo" class="form-select">
-                    <option>Casa</option><option>Departamento</option><option>Terreno</option>
+                <label class="form-label fw-bold small">Tipo de Propiedad</label>
+                <select id="propTipo" class="form-select" required>
+                    <option value="">Seleccione...</option>
+                    <option>Casa</option>
+                    <option>Departamento</option>
+                    <option>Terreno</option>
                 </select>
             </div>
             <div class="col-md-6">
-                <label class="form-label fw-bold small">N° Rol (Bienes Raíces)</label>
-                <input type="text" id="propRol" class="form-control" required>
+                <label class="form-label fw-bold small">Título del Aviso</label>
+                <input type="text" id="propTitulo" class="form-control" required>
+            </div>
+            <div class="col-md-12">
+                <label class="form-label fw-bold small">Descripción</label>
+                <textarea id="propDescripcion" class="form-control" rows="2" required></textarea>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label fw-bold small">Dormitorios</label>
+                <input type="number" id="propDorm" class="form-control" min="0" required>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label fw-bold small">Baños</label>
+                <input type="number" id="propBanios" class="form-control" min="0" required>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label fw-bold small">Área Construida (m²)</label>
+                <input type="number" id="propAreaConstruida" class="form-control" min="0" required>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label fw-bold small">Área Total Terreno (m²)</label>
+                <input type="number" id="propAreaTotal" class="form-control" min="0" required>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label fw-bold small">Precio (UF)</label>
+                <input type="number" id="propPrecioUF" class="form-control" min="0" required>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label fw-bold small">Precio ($)</label>
+                <input type="number" id="propPrecioCLP" class="form-control" min="0" required>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label fw-bold small">Fecha de Publicación</label>
+                <input type="date" id="propFecha" class="form-control" required>
+            </div>
+            <div class="col-md-12">
+                <label class="form-label fw-bold small">Fotografías (1 a 10)</label>
+                <input type="file" id="propFotos" class="form-control" accept="image/*" multiple required>
+            </div>
+            <div class="col-md-12">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="propBodega">
+                    <label class="form-check-label" for="propBodega">Bodega</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="propEstacionamiento">
+                    <label class="form-check-label" for="propEstacionamiento">Estacionamiento</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="propCocina">
+                    <label class="form-check-label" for="propCocina">Cocina amoblada</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="propAntejardin">
+                    <label class="form-check-label" for="propAntejardin">Antejardín</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="propLogia">
+                    <label class="form-check-label" for="propLogia">Logia</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="propPatio">
+                    <label class="form-check-label" for="propPatio">Patio trasero</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="propPiscina">
+                    <label class="form-check-label" for="propPiscina">Piscina</label>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="propVisita">
+                    <label class="form-check-label" for="propVisita">Opción de Solicitar una Visita</label>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label class="form-label fw-bold small">Ubicación (Google Maps)</label>
+                <input type="text" id="propUbicacion" class="form-control mb-2" placeholder="Dirección o coordenadas" required>
+                <div id="map" style="height: 250px; width: 100%; border-radius: 10px;"></div>
             </div>
           </div>
           <div class="mt-4 text-end">
@@ -93,8 +165,55 @@
 </div>
 
 <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJs2ypeFdGRPIcWWN1hsLhZFCduMEHpos&callback=initMap" async defer></script>
 <script>
-    document.addEventListener('DOMContentLoaded', cargarMisPropiedades);
+
+    let map, marker;
+    function initMap() {
+        const defaultLatLng = { lat: -33.4489, lng: -70.6693 }; // Santiago, Chile
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: defaultLatLng,
+            zoom: 12
+        });
+        marker = new google.maps.Marker({
+            position: defaultLatLng,
+            map: map,
+            draggable: true
+        });
+
+        // Actualiza el input cuando se mueve el marcador
+        marker.addListener('dragend', function() {
+            const pos = marker.getPosition();
+            document.getElementById('propUbicacion').value = pos.lat().toFixed(6) + ',' + pos.lng().toFixed(6);
+        });
+
+        // Si el usuario escribe una dirección, intenta geocodificarla
+        document.getElementById('propUbicacion').addEventListener('change', function() {
+            const address = this.value;
+            const geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ address: address }, function(results, status) {
+                if (status === 'OK') {
+                    map.setCenter(results[0].geometry.location);
+                    marker.setPosition(results[0].geometry.location);
+                }
+            });
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        cargarMisPropiedades();
+        // Si el modal se abre, inicializa el mapa
+        const modal = document.getElementById('modalPropiedad');
+        modal.addEventListener('shown.bs.modal', function () {
+            if (typeof google !== 'undefined' && typeof google.maps !== 'undefined') {
+                setTimeout(() => {
+                    google.maps.event.trigger(map, 'resize');
+                    map.setCenter(marker.getPosition());
+                }, 300);
+            }
+        });
+    });
 
     function inicializarPropiedades() {
         if (!localStorage.getItem('propiedadesPNK')) {
@@ -128,7 +247,7 @@
                     <td>UF ${prop.precio}</td>
                     <td><span class="badge ${colorEstado}">${prop.estado}</span></td>
                     <td class="text-end pe-4">
-                        <button onclick="eliminarPropiedad(${prop.id})" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i> Eliminar</button>
+                        <button onclick="eliminarPropiedad(${prop.id})" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash" aria-hidden="true"></i> Eliminar</button>
                     </td>
                 </tr>
             `;
@@ -138,21 +257,46 @@
     document.getElementById('formRegistroPropiedad').addEventListener('submit', function(e) {
         e.preventDefault();
         let propiedades = JSON.parse(localStorage.getItem('propiedadesPNK')) || [];
-        
+
+        // Obtener imágenes (solo nombres, para demo; en producción se subirían a un servidor)
+        let fotos = [];
+        const inputFotos = document.getElementById('propFotos');
+        if (inputFotos && inputFotos.files) {
+            for (let i = 0; i < Math.min(inputFotos.files.length, 10); i++) {
+                fotos.push(inputFotos.files[i].name);
+            }
+        }
+
         const nuevaProp = {
             id: Date.now(),
-            titulo: document.getElementById('propTitulo').value,
-            precio: document.getElementById('propPrecio').value,
             tipo: document.getElementById('propTipo').value,
-            rol: document.getElementById('propRol').value,
+            titulo: document.getElementById('propTitulo').value,
+            descripcion: document.getElementById('propDescripcion').value,
+            dormitorios: document.getElementById('propDorm').value,
+            banios: document.getElementById('propBanios').value,
+            areaConstruida: document.getElementById('propAreaConstruida').value,
+            areaTotal: document.getElementById('propAreaTotal').value,
+            precioUF: document.getElementById('propPrecioUF').value,
+            precioCLP: document.getElementById('propPrecioCLP').value,
+            fechaPublicacion: document.getElementById('propFecha').value,
+            fotos: fotos,
+            bodega: document.getElementById('propBodega').checked,
+            estacionamiento: document.getElementById('propEstacionamiento').checked,
+            cocina: document.getElementById('propCocina').checked,
+            antejardin: document.getElementById('propAntejardin').checked,
+            logia: document.getElementById('propLogia').checked,
+            patio: document.getElementById('propPatio').checked,
+            piscina: document.getElementById('propPiscina').checked,
+            solicitarVisita: document.getElementById('propVisita').checked,
+            ubicacion: document.getElementById('propUbicacion').value,
             estado: "Revisión",
-            autor: "Profesor Evaluador", 
+            autor: "Profesor Evaluador",
             tipoAutor: "Propietario"
         };
 
         propiedades.push(nuevaProp);
         localStorage.setItem('propiedadesPNK', JSON.stringify(propiedades));
-        
+
         alert('Propiedad registrada. Esperando revisión del Administrador.');
         let modal = bootstrap.Modal.getInstance(document.getElementById('modalPropiedad'));
         modal.hide();

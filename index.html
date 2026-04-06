@@ -234,12 +234,13 @@
     </style>
 </head>
 
-<body class="bg-white">
 
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom py-3" aria-label="Navegación principal">
+<body class="bg-white" itemscope itemtype="https://schema.org/WebPage">
+
+    <header role="banner">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom py-3" aria-label="Navegación principal" role="navigation">
             <div class="container">
-                <a class="navbar-brand fw-bold fs-4 text-dark" href="index.html">INMOBILIARIA PNK</a>
+                <a class="navbar-brand fw-bold fs-4 text-dark" href="index.html" aria-label="Inicio Inmobiliaria PNK" title="Inicio">INMOBILIARIA PNK</a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegación">
@@ -247,18 +248,18 @@
                 </button>
 
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav align-items-center">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark fw-semibold border border-dark px-3 mx-1"
+                    <ul class="navbar-nav align-items-center" role="menubar">
+                        <li class="nav-item" role="none">
+                            <a class="nav-link text-dark fw-semibold border border-dark px-3 mx-1" role="menuitem"
                                 href="registro-propietario.html">Registrar Propietario</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark fw-semibold border border-dark px-3 mx-1"
+                        <li class="nav-item" role="none">
+                            <a class="nav-link text-dark fw-semibold border border-dark px-3 mx-1" role="menuitem"
                                 href="registro-gestor.html">Registrar Gestor Freelance</a>
                         </li>
                         <!-- Opción de contacto eliminada -->
-                        <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
-                            <a class="btn btn-primary shadow-sm text-white" href="login.html">Iniciar Sesión</a>
+                        <li class="nav-item ms-lg-3 mt-2 mt-lg-0" role="none">
+                            <a class="btn btn-primary shadow-sm text-white" href="login.html" role="menuitem">Iniciar Sesión</a>
                         </li>
                     </ul>
                 </div>
@@ -266,8 +267,8 @@
         </nav>
     </header>
 
-        <main id="main-content" tabindex="-1" class="container my-4">
-            <section aria-labelledby="estadisticas-titulo" class="mb-4">
+        <main id="main-content" tabindex="-1" class="container my-4" role="main">
+            <section aria-labelledby="estadisticas-titulo" class="mb-4" role="region">
                 <h2 id="estadisticas-titulo" class="visually-hidden">Estadísticas del sistema</h2>
                 <div class="row text-center">
                     <div class="col-md-4 mb-3">
@@ -290,7 +291,7 @@
                     </div>
                 </div>
             </section>
-            <section aria-labelledby="banner-titulo" class="mb-5">
+            <section aria-labelledby="banner-titulo" class="mb-5" role="region">
                 <div class="hero-banner" style="grid-template-columns: 1fr; min-height: 220px;">
                     <div class="hero-content" style="text-align:center; width:100%;">
                         <p class="text-uppercase fw-semibold mb-3" style="letter-spacing:0.16em; opacity:0.8;">Proyectos disponibles</p>
@@ -303,7 +304,7 @@
                     </div>
                 </div>
             </section>
-            <section id="buscador" aria-labelledby="buscador-titulo" class="mb-5">
+            <section id="buscador" aria-labelledby="buscador-titulo" class="mb-5" role="search">
                 <fieldset class="fieldset-border">
                     <legend id="buscador-titulo" class="fieldset-legend">Buscador</legend>
                     <form id="formBuscador" class="row g-3 align-items-center justify-content-center" autocomplete="on" aria-labelledby="buscador-titulo">
@@ -339,19 +340,19 @@
                     </form>
                 </fieldset>
             </section>
-            <section aria-labelledby="titulo-propiedades">
+            <section aria-labelledby="titulo-propiedades" role="region">
                 <h2 id="titulo-propiedades" class="visually-hidden">Catálogo de propiedades disponibles</h2>
-                <div id="propiedadesContainer" class="row row-cols-1 row-cols-md-3 g-4"></div>
+                <div id="propiedadesContainer" class="row row-cols-1 row-cols-md-3 g-4" aria-live="polite"></div>
             </section>
         </main>
 
     <a href="#" class="btn btn-primary rounded-circle position-fixed bottom-0 end-0 m-4 shadow"
         aria-label="Volver arriba"
         style="z-index: 1000; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;">
-        <i class="bi bi-arrow-up fs-4 text-white"></i>
+        <i class="bi bi-arrow-up fs-4 text-white" aria-hidden="true"></i>
     </a>
 
-    <footer class="footer-bg text-white mt-5 py-4">
+    <footer class="footer-bg text-white mt-5 py-4" role="contentinfo">
         <div class="container">
             <div class="row align-items-center text-center text-md-start">
                 <div
@@ -362,9 +363,9 @@
                     <span class="fw-bold ms-2">INMOBILIARIA PNK</span>
                 </div>
                 <div class="col-md-6 mb-3 mb-md-0 text-center">
-                    <a href="registro-propietario.html" class="text-white text-decoration-none mx-2">Registro
+                    <a href="registro-propietario.html" class="text-white text-decoration-none mx-2" aria-label="Registro Propietario">Registro
                         Propietario</a> -
-                    <a href="registro-gestor.html" class="text-white text-decoration-none mx-2">Registro Gestor</a>
+                    <a href="registro-gestor.html" class="text-white text-decoration-none mx-2" aria-label="Registro Gestor">Registro Gestor</a>
                     <p class="mt-2 mb-0 small text-light">&copy; 2026 Todos los derechos Reservados Inmobiliaria PNK</p>
                 </div>
                 <div class="col-md-3 text-center text-md-end fs-4"></div>
@@ -374,8 +375,9 @@
 
     <script src="js/bootstrap.bundle.min.js"></script>
     <script>
-    // Datos de propiedades
-    const propiedades = [
+
+    // Propiedades fijas (demo)
+    const propiedadesFijas = [
         {
             tipo: 'Terreno en venta',
             img: 'img/terreno en venta.jpg',
@@ -450,6 +452,47 @@
         }
     ];
 
+    // Cargar propiedades de propietarios desde localStorage
+    function obtenerPropiedadesLocales() {
+        let props = [];
+        try {
+            const guardadas = JSON.parse(localStorage.getItem('propiedadesPNK')) || [];
+            // Solo mostrar las que están en estado 'Revisión' o 'Público'
+            props = guardadas.filter(p => p.estado === 'Revisión' || p.estado === 'Público');
+        } catch {}
+        // Adaptar formato para mostrar
+        return props.map(p => ({
+            tipo: p.tipo,
+            img: (p.fotos && p.fotos.length > 0) ? 'img/' + p.fotos[0] : 'img/no-image.png',
+            comuna: p.ubicacion || 'Sin dirección',
+            provincia: '',
+            sector: '',
+            precio: `UF ${p.precioUF || ''} - $${p.precioCLP || ''}`
+        }));
+    }
+
+    function obtenerTodasPropiedades() {
+        return [...obtenerPropiedadesLocales(), ...propiedadesFijas];
+    }
+
+
+    // Modal para detalles
+    if (!document.getElementById('modalDetallePropiedad')) {
+        const modalHtml = `
+        <div class="modal fade" id="modalDetallePropiedad" tabindex="-1">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content rounded-4">
+              <div class="modal-header bg-light p-4">
+                <h5 class="fw-bold mb-0" id="modalDetalleTitulo">Detalle de la Propiedad</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body p-4" id="modalDetalleBody"></div>
+            </div>
+          </div>
+        </div>`;
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+    }
+
     function renderPropiedades(lista) {
         const container = document.getElementById('propiedadesContainer');
         container.innerHTML = '';
@@ -457,36 +500,114 @@
             container.innerHTML = '<div class="col-12"><div class="alert alert-warning text-center">No hay propiedades que coincidan con la búsqueda.</div></div>';
             return;
         }
-        lista.forEach(prop => {
+        lista.forEach((prop, idx) => {
+            // Valores inventados para las propiedades fijas
+            const esFija = !prop.id;
+            const areaConstruida = prop.areaConstruida || (esFija ? (80 + idx * 10) : '');
+            const dormitorios = prop.dormitorios || (esFija ? (2 + (idx % 4)) : '');
+            const solicitarVisita = prop.solicitarVisita !== undefined ? prop.solicitarVisita : (esFija ? (idx % 2 === 0) : false);
+            const precioUF = prop.precioUF || (esFija ? (4000 + idx * 500) : '');
+            const bodega = prop.bodega !== undefined ? prop.bodega : (esFija ? (idx % 2 === 0) : false);
+            const cocina = prop.cocina !== undefined ? prop.cocina : (esFija ? (idx % 2 === 1) : false);
+            const piscina = prop.piscina !== undefined ? prop.piscina : (esFija ? (idx % 3 === 0) : false);
+            const descripcion = prop.descripcion || (esFija ? 'Propiedad destacada en excelente ubicación.' : '');
+            const banios = prop.banios || (esFija ? (1 + (idx % 3)) : '');
+            const areaTotal = prop.areaTotal || (esFija ? (200 + idx * 20) : '');
+            const precioCLP = prop.precioCLP || (esFija ? (100000000 + idx * 10000000) : '');
+            const fechaPublicacion = prop.fechaPublicacion || (esFija ? '2026-04-05' : '');
+            const estacionamiento = prop.estacionamiento !== undefined ? prop.estacionamiento : (esFija ? (idx % 2 === 0) : false);
+            const antejardin = prop.antejardin !== undefined ? prop.antejardin : (esFija ? (idx % 2 === 1) : false);
+            const logia = prop.logia !== undefined ? prop.logia : (esFija ? (idx % 3 === 0) : false);
+            const patio = prop.patio !== undefined ? prop.patio : (esFija ? (idx % 2 === 0) : false);
+            const ubicacion = prop.ubicacion || (esFija ? 'La Serena, Chile' : '');
+            // Google Maps link
+            const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ubicacion)}`;
+            // Compartir
+            const shareUrl = window.location.href;
+            const shareText = encodeURIComponent(`Mira esta propiedad: ${prop.tipo} en ${ubicacion}`);
+
             container.innerHTML += `
             <div class="col">
                 <article class="card h-100 border-0 shadow-sm">
                     <img src="${prop.img}" alt="${prop.tipo} ${prop.comuna}" class="property-image w-100" style="object-fit:cover;height:240px;">
                     <div class="card-body px-0">
                         <h3 class="card-title h6 fw-bold">${prop.tipo}</h3>
-                        <p class="mb-1">Comuna: ${prop.comuna}</p>
-                        <p class="mb-1">Provincia: ${prop.provincia}</p>
-                        <p class="mb-1">Sector: ${prop.sector}</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <p class="card-text text-secondary mb-0">${prop.precio}</p>
-                            <a href="#" class="btn btn-ver-mas btn-sm fw-bold border-dark">Ver Más</a>
+                        <div class="d-flex justify-content-between align-items-center mt-2">
+                            <button class="btn btn-ver-mas btn-sm fw-bold border-dark" data-idx="${idx}" data-bs-toggle="modal" data-bs-target="#modalDetallePropiedad">Ver Más</button>
+                            <div>
+                                <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}" target="_blank" title="Compartir en Facebook"><i class="bi bi-facebook fs-5 mx-1"></i></a>
+                                <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${shareText}" target="_blank" title="Compartir en X"><i class="bi bi-twitter-x fs-5 mx-1"></i></a>
+                                <a href="https://wa.me/?text=${shareText}%20${encodeURIComponent(shareUrl)}" target="_blank" title="Compartir en WhatsApp"><i class="bi bi-whatsapp fs-5 mx-1"></i></a>
+                            </div>
                         </div>
                     </div>
                 </article>
             </div>
             `;
         });
+
+        // Evento para mostrar detalles en el modal
+        setTimeout(() => {
+            document.querySelectorAll('.btn-ver-mas[data-idx]').forEach(btn => {
+                btn.onclick = function() {
+                    const idx = this.getAttribute('data-idx');
+                    const prop = lista[idx];
+                    const esFija = !prop.id;
+                    const areaConstruida = prop.areaConstruida || (esFija ? (80 + idx * 10) : '');
+                    const dormitorios = prop.dormitorios || (esFija ? (2 + (idx % 4)) : '');
+                    const solicitarVisita = prop.solicitarVisita !== undefined ? prop.solicitarVisita : (esFija ? (idx % 2 === 0) : false);
+                    const precioUF = prop.precioUF || (esFija ? (4000 + idx * 500) : '');
+                    const bodega = prop.bodega !== undefined ? prop.bodega : (esFija ? (idx % 2 === 0) : false);
+                    const cocina = prop.cocina !== undefined ? prop.cocina : (esFija ? (idx % 2 === 1) : false);
+                    const piscina = prop.piscina !== undefined ? prop.piscina : (esFija ? (idx % 3 === 0) : false);
+                    const descripcion = prop.descripcion || (esFija ? 'Propiedad destacada en excelente ubicación.' : '');
+                    const banios = prop.banios || (esFija ? (1 + (idx % 3)) : '');
+                    const areaTotal = prop.areaTotal || (esFija ? (200 + idx * 20) : '');
+                    const precioCLP = prop.precioCLP || (esFija ? (100000000 + idx * 10000000) : '');
+                    const fechaPublicacion = prop.fechaPublicacion || (esFija ? '2026-04-05' : '');
+                    const estacionamiento = prop.estacionamiento !== undefined ? prop.estacionamiento : (esFija ? (idx % 2 === 0) : false);
+                    const antejardin = prop.antejardin !== undefined ? prop.antejardin : (esFija ? (idx % 2 === 1) : false);
+                    const logia = prop.logia !== undefined ? prop.logia : (esFija ? (idx % 3 === 0) : false);
+                    const patio = prop.patio !== undefined ? prop.patio : (esFija ? (idx % 2 === 0) : false);
+                    const ubicacion = prop.ubicacion || (esFija ? 'La Serena, Chile' : '');
+                    const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ubicacion)}`;
+                    document.getElementById('modalDetalleTitulo').textContent = prop.tipo;
+                    document.getElementById('modalDetalleBody').innerHTML = `
+                        <img src="${prop.img}" alt="${prop.tipo}" class="w-100 mb-3 rounded" style="max-height:300px;object-fit:cover;">
+                        <p><strong>Descripción:</strong> ${descripcion}</p>
+                        <p><strong>Área Construida:</strong> ${areaConstruida} m²</p>
+                        <p><strong>Área Total Terreno:</strong> ${areaTotal} m²</p>
+                        <p><strong>Dormitorios:</strong> ${dormitorios}</p>
+                        <p><strong>Baños:</strong> ${banios}</p>
+                        <p><strong>Precio UF:</strong> ${precioUF}</p>
+                        <p><strong>Precio $:</strong> ${precioCLP}</p>
+                        <p><strong>Fecha de Publicación:</strong> ${fechaPublicacion}</p>
+                        <p><strong>Solicitar Visita:</strong> ${solicitarVisita ? 'Sí' : 'No'}</p>
+                        <p><strong>Bodega:</strong> ${bodega ? 'Sí' : 'No'}</p>
+                        <p><strong>Cocina amoblada:</strong> ${cocina ? 'Sí' : 'No'}</p>
+                        <p><strong>Piscina:</strong> ${piscina ? 'Sí' : 'No'}</p>
+                        <p><strong>Estacionamiento:</strong> ${estacionamiento ? 'Sí' : 'No'}</p>
+                        <p><strong>Antejardín:</strong> ${antejardin ? 'Sí' : 'No'}</p>
+                        <p><strong>Logia:</strong> ${logia ? 'Sí' : 'No'}</p>
+                        <p><strong>Patio trasero:</strong> ${patio ? 'Sí' : 'No'}</p>
+                        <p><strong>Ubicación:</strong> <a href="${mapsUrl}" target="_blank">Ver en Google Maps</a></p>
+                    `;
+                };
+            });
+        }, 100);
     }
 
+
     // Mostrar todas al cargar
-    renderPropiedades(propiedades);
+    renderPropiedades(obtenerTodasPropiedades());
 
     document.getElementById('formBuscador').addEventListener('submit', function(e) {
         e.preventDefault();
         const comuna = document.getElementById('selectComuna').value;
         const provincia = document.getElementById('selectProvincia').value;
         const sector = document.getElementById('selectSector').value;
-        const filtradas = propiedades.filter(p =>
+        const todas = obtenerTodasPropiedades();
+        const filtradas = todas.filter(p =>
             (comuna === '' || p.comuna === comuna) &&
             (provincia === '' || p.provincia === provincia) &&
             (sector === '' || p.sector === sector)

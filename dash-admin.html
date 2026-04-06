@@ -30,7 +30,7 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <nav class="col-md-3 col-lg-2 sidebar d-md-block collapse" aria-label="Menú de navegación principal">
+            <nav class="col-md-3 col-lg-2 sidebar d-md-block collapse" aria-label="Menú de navegación principal" role="navigation">
                 <div class="d-flex align-items-center mb-5 px-3">
                     <span class="fs-4 fw-bold tracking-tight text-white">ADMIN<span style="color: var(--brand);">PNK</span></span>
                 </div>
@@ -49,7 +49,7 @@
                     </li>
                 </ul>
             </nav>
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-5 py-4" id="main-content" tabindex="-1">
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-5 py-4" id="main-content" tabindex="-1" role="main">
                 <section aria-labelledby="resumen-titulo">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-3 mb-4 border-bottom">
                         <h1 class="h3 fw-bold text-dark" id="resumen-titulo">Panel de Control Principal</h1>
@@ -58,19 +58,19 @@
                     <div class="row g-4 mb-5">
                         <div class="col-md-4">
                             <div class="card card-panel p-4 border-start border-4 border-warning">
-                                <h2 class="h6 text-muted fw-bold mb-1">Usuarios Pendientes</h2>
+                                <h2 class="h6 text-muted fw-bold mb-1" id="usuarios-pendientes-titulo">Usuarios Pendientes</h2>
                                 <p class="h2 mb-0 fw-bolder" id="contador-pendientes">--</p>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="card card-panel p-4 border-start border-4 border-success">
-                                <h2 class="h6 text-muted fw-bold mb-1">Usuarios Activos</h2>
+                                <h2 class="h6 text-muted fw-bold mb-1" id="usuarios-activos-titulo">Usuarios Activos</h2>
                                 <p class="h2 mb-0 fw-bolder" id="contador-activos">--</p>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="card card-panel p-4 border-start border-4 border-primary">
-                                <h2 class="h6 text-muted fw-bold mb-1">Total Propiedades</h2>
+                                <h2 class="h6 text-muted fw-bold mb-1" id="total-propiedades-titulo">Total Propiedades</h2>
                                 <p class="h2 mb-0 fw-bolder" id="contador-propiedades">--</p>
                             </div>
                         </div>
@@ -83,6 +83,7 @@
                     <div class="card card-panel overflow-hidden mb-5">
                         <div class="table-responsive">
                             <table class="table table-hover mb-0" aria-describedby="usuarios-titulo">
+                                <caption>Lista de usuarios registrados en el sistema</caption>
                                 <thead>
                                     <tr>
                                         <th class="ps-4">Usuario</th>
@@ -102,6 +103,116 @@
                 <section aria-labelledby="propiedades-titulo">
                     <div class="d-flex justify-content-between align-items-center mb-3 mt-5">
                         <h2 id="propiedades-titulo" class="fw-bold mb-0">Administración de Avisos Inmobiliarios</h2>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPropiedadAdmin"><i class="bi bi-plus-lg me-2"></i>Agregar Propiedad</button>
+                    </div>
+                    <!-- Modal para agregar propiedad -->
+                    <div class="modal fade" id="modalPropiedadAdmin" tabindex="-1">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content rounded-4">
+                          <div class="modal-header bg-light p-4">
+                            <h5 class="fw-bold mb-0">Registrar Nueva Propiedad (Admin)</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                          </div>
+                          <div class="modal-body p-4">
+                            <form id="formRegistroPropiedadAdmin">
+                              <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold small">Tipo de Propiedad</label>
+                                    <select id="adminPropTipo" class="form-select" required>
+                                        <option value="">Seleccione...</option>
+                                        <option>Casa</option>
+                                        <option>Departamento</option>
+                                        <option>Terreno</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold small">Título del Aviso</label>
+                                    <input type="text" id="adminPropTitulo" class="form-control" required>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="form-label fw-bold small">Descripción</label>
+                                    <textarea id="adminPropDescripcion" class="form-control" rows="2" required></textarea>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label fw-bold small">Dormitorios</label>
+                                    <input type="number" id="adminPropDorm" class="form-control" min="0" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label fw-bold small">Baños</label>
+                                    <input type="number" id="adminPropBanios" class="form-control" min="0" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label fw-bold small">Área Construida (m²)</label>
+                                    <input type="number" id="adminPropAreaConstruida" class="form-control" min="0" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label fw-bold small">Área Total Terreno (m²)</label>
+                                    <input type="number" id="adminPropAreaTotal" class="form-control" min="0" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label fw-bold small">Precio (UF)</label>
+                                    <input type="number" id="adminPropPrecioUF" class="form-control" min="0" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label fw-bold small">Precio ($)</label>
+                                    <input type="number" id="adminPropPrecioCLP" class="form-control" min="0" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label fw-bold small">Fecha de Publicación</label>
+                                    <input type="date" id="adminPropFecha" class="form-control" required>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="form-label fw-bold small">Fotografías (1 a 10)</label>
+                                    <input type="file" id="adminPropFotos" class="form-control" accept="image/*" multiple required>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="adminPropBodega">
+                                        <label class="form-check-label" for="adminPropBodega">Bodega</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="adminPropEstacionamiento">
+                                        <label class="form-check-label" for="adminPropEstacionamiento">Estacionamiento</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="adminPropCocina">
+                                        <label class="form-check-label" for="adminPropCocina">Cocina amoblada</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="adminPropAntejardin">
+                                        <label class="form-check-label" for="adminPropAntejardin">Antejardín</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="adminPropLogia">
+                                        <label class="form-check-label" for="adminPropLogia">Logia</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="adminPropPatio">
+                                        <label class="form-check-label" for="adminPropPatio">Patio trasero</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="adminPropPiscina">
+                                        <label class="form-check-label" for="adminPropPiscina">Piscina</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="adminPropVisita">
+                                        <label class="form-check-label" for="adminPropVisita">Opción de Solicitar una Visita</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="form-label fw-bold small">Ubicación (Google Maps)</label>
+                                    <input type="text" id="adminPropUbicacion" class="form-control mb-2" placeholder="Dirección o coordenadas" required>
+                                </div>
+                              </div>
+                              <div class="mt-4 text-end">
+                                <button type="submit" class="btn btn-primary px-4">Guardar Propiedad</button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     <div class="card card-panel overflow-hidden mb-5">
                         <div class="table-responsive">
@@ -127,6 +238,56 @@
 
 <script src="js/bootstrap.bundle.min.js"></script>
 <script>
+        // Registro de propiedad por admin
+        document.addEventListener('DOMContentLoaded', function() {
+            const formAdmin = document.getElementById('formRegistroPropiedadAdmin');
+            if (formAdmin) {
+                formAdmin.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    let propiedades = JSON.parse(localStorage.getItem('propiedadesPNK')) || [];
+                    let fotos = [];
+                    const inputFotos = document.getElementById('adminPropFotos');
+                    if (inputFotos && inputFotos.files) {
+                        for (let i = 0; i < Math.min(inputFotos.files.length, 10); i++) {
+                            fotos.push(inputFotos.files[i].name);
+                        }
+                    }
+                    const nuevaProp = {
+                        id: Date.now(),
+                        tipo: document.getElementById('adminPropTipo').value,
+                        titulo: document.getElementById('adminPropTitulo').value,
+                        descripcion: document.getElementById('adminPropDescripcion').value,
+                        dormitorios: document.getElementById('adminPropDorm').value,
+                        banios: document.getElementById('adminPropBanios').value,
+                        areaConstruida: document.getElementById('adminPropAreaConstruida').value,
+                        areaTotal: document.getElementById('adminPropAreaTotal').value,
+                        precioUF: document.getElementById('adminPropPrecioUF').value,
+                        precioCLP: document.getElementById('adminPropPrecioCLP').value,
+                        fechaPublicacion: document.getElementById('adminPropFecha').value,
+                        fotos: fotos,
+                        bodega: document.getElementById('adminPropBodega').checked,
+                        estacionamiento: document.getElementById('adminPropEstacionamiento').checked,
+                        cocina: document.getElementById('adminPropCocina').checked,
+                        antejardin: document.getElementById('adminPropAntejardin').checked,
+                        logia: document.getElementById('adminPropLogia').checked,
+                        patio: document.getElementById('adminPropPatio').checked,
+                        piscina: document.getElementById('adminPropPiscina').checked,
+                        solicitarVisita: document.getElementById('adminPropVisita').checked,
+                        ubicacion: document.getElementById('adminPropUbicacion').value,
+                        estado: "Público",
+                        autor: "Administrador",
+                        tipoAutor: "Admin"
+                    };
+                    propiedades.push(nuevaProp);
+                    localStorage.setItem('propiedadesPNK', JSON.stringify(propiedades));
+                    // Cerrar modal y recargar tabla
+                    let modal = bootstrap.Modal.getInstance(document.getElementById('modalPropiedadAdmin'));
+                    modal.hide();
+                    formAdmin.reset();
+                    cargarPropiedadesAdmin();
+                });
+            }
+        });
     document.addEventListener('DOMContentLoaded', function() {
         cargarUsuarios();
         cargarPropiedadesAdmin();
